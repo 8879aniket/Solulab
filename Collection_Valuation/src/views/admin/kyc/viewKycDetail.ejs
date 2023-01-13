@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Collection Valuation</title>
+      <base href="/">
+      <link rel="icon"  type="image/ico" href="img/logo-modal.png">
+      <link href="css/bootstrap.min.css" rel="stylesheet">
+      <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+      <link href="css/animate.css" rel="stylesheet">
+      <link href="css/style.css" rel="stylesheet">
+      <link href="css/mystyle-coman.css" rel="stylesheet">
+      <link href="css/media.css" rel="stylesheet">
+      <link href="css/admin-style.css" rel="stylesheet">
+      <link href="css/datatables.min.css" rel="stylesheet">
+   </head>
+   <body>
+      <div id="wrapper">
+          <nav class="navbar-default navbar-expand-lg  navbar-static-side left-main-menu" role="navigation">
+         <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+               <li class="nav-header">
+                  <div class="dropdown profile-element">
+                     <div class="logo-panel text-center float-n">
+                        <a href="dashboard.html"> <img src="img/logo-modal.png" alt=""></a>
+                     </div>
+                  </div>
+                  <div class="logo-element">
+                     <a href="admin/dashboard"> <img src="img/logo-modal.png" alt=""></a>
+                  </div>
+               </li>
+               <li >
+                  <a href="admin/dashboard" title="dashboard"><i class="fa fa-tachometer" aria-hidden="true"></i> <span class="nav-label">Dashboard</span></a>
+               </li>
+               <li>
+                  <a href="admin/members" title="Members"><i class="fa fa-users" aria-hidden="true"></i> <span class="nav-label">Members </span></a>
+               </li>
+               <li>
+                  <a href="admin/coins"  title="Coins"><i class="fa fa-database" aria-hidden="true"></i> <span class="nav-label">Coins</span></a>
+               </li>
+               <li>
+                  <a href="admin/bankNotes" title="Bank Note"><i class="fa fa-file-text" aria-hidden="true"></i><span class="nav-label">Bank Note</span></a>
+               </li>
+               <li>
+                  <a href="admin/graded-coins" title="Graded coins"><i class="fa fa-usd" aria-hidden="true"></i> <span class="nav-label">Graded coins </span></a>
+               </li>
+               <li>
+                  <a href="admin/graded-notes" title="Graded Notes "><i class="fa fa-file" aria-hidden="true"></i> <span class="nav-label margin-top">Graded Notes </span></a>
+               </li>
+               <li>
+                  <a href="admin/orders" title="Orders"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i><span class="nav-label margin-top">Orders</span></a>
+               </li>
+                <li  class="">
+                  <a href="admin/auctions" title="Auction"><i class="fa fa-gavel" aria-hidden="true"></i> <span class="nav-label margin-top">Auction</span></a>
+               </li>
+               <li  class="active">
+                <a href="admin/kycRequests" title="Kyc"><i class="fa fa-briefcase"></i> <span class="nav-label">KYC Request</span></a>
+             </li>
+                <li class="">
+                  <a href="admin/disputeRequest" title="Dispute Request"><i class="fa fa-question-circle" aria-hidden="true"></i> <span class="nav-label margin-top">Dispute Request</span></a>
+               </li>
+              
+               <li>
+                  <a href="admin/cmsPages" title="CMS Pages"><i class="fa fa-file-text-o" aria-hidden="true"></i><span class="nav-label margin-top">CMS Pages</span></a>
+               </li>
+            </ul>
+         </div>
+      </nav>
+         <div id="page-wrapper" class="dark-bg">
+            <div class="row top-menu2">
+               <nav class="navbar navbar-static-top dark-bg-header top-menu" role="navigation" style="margin-bottom: 0">
+                  <div class="navbar-header">
+                     <a class="navbar-minimalize minimalize-styl-2 btn btn-primary "><i class="fa fa-bars"></i>
+                     </a>
+                  </div>
+                  <ul class="nav navbar-top-links navbar-right">
+                     <li class="user-info-box welcome tooltipa">
+                         <div class="dropdown d-flex">
+                             <span class="prof-img">
+                                 <a href="admin/profile">
+                                   <% if(Object.prototype.toString.call(loggedInUser.profilePic) === '[object Object]' && JSON.stringify(loggedInUser.profilePic) === '{}'){%>
+                                    <img alt="image" class="img-back" src="img/prf-img.png"></a>
+                                    <% }else{%>
+                                       <img alt="image" class="img-back" src="<%=loggedInUser.profilePic.url%>"></a>
+                                    <%}%>
+                             </span>
+                             <a data-toggle="dropdown" class="dropdown-toggle" href="#" aria-expanded="false">
+                                 <span class="clear"> <span class="block m-t-xs">
+                                     </span> <span class="text-muted text-xs block"><%=loggedInUser.firstName%> <%=loggedInUser.lastName%><b
+                                             class="caret"></b></span> </span> </a>
+                             <ul class="dropdown-menu">
+                                 <li><a href="admin/profile">Profile</a></li>
+   
+                                 <!--                            <li><a href="contacts.html">Contacts</a></li>-->
+                                 <li><a href="admin/logout">Logout</a></li>
+                             </ul>
+                         </div>
+                     </li>
+                 </ul>
+               </nav>
+            </div>
+        
+            <div class="wrapper wrapper-content">
+
+                <div class="row">
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                             <div class="ibox">
+                                     <div class="ibox-content" id="history">
+                                         <div class="box-heading">
+                     <a href="admin/kycRequests">
+                       <h2> <img src="img/back-icon.png" class="img-back">KYC Request Details
+                       </h2>
+                     </a>
+
+                   </div>
+         
+                                         <div class="border-solid m-b-lg">
+                                     <div class="text-right m-b-md">
+                                        <% if(data.map(x=>x.kyc.isKyc) == 'verified'){%>
+                                          <a href="#reject-modal" class="btn btn-default min-135 btn-small"  data-toggle="modal">Reject</a>
+                                          <%}else if(data.map(x=>x.kyc.isKyc) == 'reject'){%>
+                                             <a class="btn btn-default min-135 btn-small disabled " >Rejected</a>
+                                             <%}else{%>
+                                             <a href="#" class="btn btn-default min-135 btn-small" data-toggle="modal" data-href="admin/approveKyc/<%= data.map(x=>x._id)%>" data-target="#modal-approve"> Approve</a>
+                                          <a href="#reject-modal" class="btn btn-default min-135 btn-small"  data-toggle="modal">Reject</a>
+                                          <%}%>
+                                                           </div>  
+                                                           <div class="row">
+                             <div class="col-md-12">
+                                 <div class="row ">
+                                     <% data.forEach(item=>{%>
+                                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="detail-title-a">
+                                        <p><span>First Name:</span><%= item.firstName%></p>
+                                            <p><span>Last Name:</span><%= item.lastName%></p>
+                                             <p><span>DOB:</span><%= item.dob.slice(0, 10)%></p>
+                                         <p><span>Email Address:</span><%= item.email%></p>
+                                       <p><span>Phone Number:</span><%= item.phone%></p>
+                                    <p><span>Document Type: <% if(typeof item.kycDocument == 'undefined'){%>
+
+                                    <%}else{%></span><%= item.kycDocument.map(x=>x.type)%> </p>
+                                      <%}%>
+                                     
+                                    </div>
+                                    </div>
+                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                     <div class="detail-title-a">
+                                      
+                                      
+                                       <p><span>Counrty:</span><%= item.country%></p>
+                                       
+                                       <p><span>City:</span><%= item.city%></p>
+                                      
+                                       <% if(item.kyc.isKyc == 'verified'){%>
+                                        <p><span>KYC Status:</span>Approved</p>
+                                        <%}else if(item.kyc.isKyc == 'reject'){%>
+                                        <p><span>KYC Status:</span>Rejected</p>
+                                        <%}else{%>
+                                          <p><span>KYC Status:</span>Pending</p>
+                                          <%}%>
+                                         <p><span>Date:</span><%=item.created.toDateString().substr(3, 12)%></p>
+                                         <% if(item.kyc.kycRejectReason == 'null'){%>
+                                          <p><span>Reason:</span></p>
+                                          <%}else{%>
+                                          <p><span>Reason:</span><%= item.kyc.kycRejectReason%></p>
+                                             <%}%>
+                                      
+                                    </div>
+                                  </div>
+                                  <%})%>
+                              </div>
+                            </div>
+                        </div>    
+                        </div> 
+   
+                                           
+                                              
+                                           
+                                
+                                     <!-- kyc documents -->
+                                            <div class="box-heading">
+                                          <h2 class="m-t-md m-b-md">KYC Documents</h2>     	
+                                            </div>
+                                            <div class="row" id="kyc-doc">
+                                               <% if(data.map(x=>x.kycDocument).some(e=>e === undefined)){%>
+                                                <p style="margin-left: 17px;">Not available</p>
+                                                <%}else if(data.map(x=>x.kycDocument.map(x=>x.document)) == ''){%>
+                                                   <p style="margin-left: 17px;">Not available</p>
+                                                <%}else{%>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" >
+                                                    <div class="box">
+                                       <img src="<%= data.map(x=>x.kycDocument.map(x=>x.document.url)[0])%>" alt="" class="myImg" >
+                                     
+                                       <i class="fa fa-search-plus" aria-hidden="true"></i>
+                                  
+                                     </div>
+                                   
+                                                </div>
+                                                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" >
+                                                  <div class="box">
+                                                   
+                                       <img src="<%= data.map(x=>x.kycDocument.map(x=>x.document.url)[1])%>" alt="" class="myImg" >
+                                      
+                                       <i class="fa fa-search-plus" aria-hidden="true"></i>
+                                  
+                                     </div>
+                                      
+                                                </div>
+                                                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" >
+                                                     <div class="box">
+                                                        
+                                       <img src="<%= data.map(x=>x.kycDocument.map(x=>x.document.url)[2])%>" alt="" class="myImg" >
+                                       <i class="fa fa-search-plus" aria-hidden="true"></i>
+                                       
+                                    </div>
+                                    
+                                 </div>
+                                 <%}%>
+                                                
+                                            </div>
+                                             
+                                     </div>
+                             </div>
+                      </div>
+                </div>
+                
+                
+           </div>
+         </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      <div class="modal coman-modal fade" id="modal-approve" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content text-center">
+            <h3 style="font-size: 20px;
+            color: #000;
+            margin-bottom: 20px;">Are you sure you want to approve?</h3>
+
+            <div class="clearfix">
+               <div style="display: flex; align-items: center; justify-content: center; ">
+                  <button style="padding: 7px 0px;
+                  border-radius: 5px;
+                  max-width: 100px; width: 100%; margin-right: 10px;" type="submit" class="btn   btn-default m-r-sm" data-dismiss="modal" >No</button>
+                  <button style="padding: 7px 0px;
+                  border-radius: 5px;
+                  max-width: 100px; width: 100%;" type="submit" class="btn btn-primary approveKyc" data-dismiss="modal"  data-toggle="modal" data-target="#modal-successa">Yes</button>
+
+               </div>
+            </div>
+            
+        </div>
+        </div>
+    
+      </div>
+      <div class="modal coman-modal  fade" id="modal-successa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+        <div class="modal-dialog" role="document">
+           <div class="modal-content text-center">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+              <div class="success-msg-icon">
+                 <i class="fa fa-check-circle m-b-0" aria-hidden="true"></i>
+              </div> 
+              <h2>Approved successfully !!</h2>
+           </div>
+        </div>
+     </div>
+          <div class="modal coman-modal  fade" id="modal-successa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+          <div class="modal-dialog" role="document">
+             <div class="modal-content text-center">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="success-msg-icon">
+                   <i class="fa fa-check-circle m-b-0" aria-hidden="true"></i>
+                </div> 
+                <h2>Deleted successfully !!</h2>
+             </div>
+          </div>
+       </div>
+      <div class="modal coman-modal  fade" id="Status-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+         <div class="modal-dialog modal-sm modal-a" role="document">
+            <div class="modal-content text-center">
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+               </button>
+               <h2>Status</h2>
+               <div class="form-group text-left">
+                  <label> <span>Document 1 :</span> Approve</label>
+               </div>
+               <div class="form-group text-left">
+                  <label><span>Document 2 : </span> Reject Image is Blur</label>
+               </div>
+               <div class="form-group  text-left">
+                  <label><span>Document 3 : </span> Approve</label>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- IMAGE MODAL -->
+      <div id="myModal" class="modal kyc myModal">
+         <span class="close cursor" onclick="closeModal()">&times;</span>
+         <img class="modal-content-A img01" >
+         <!-- <div id="caption"></div> -->
+      </div>
+      <div class="modal coman-modal  fade" id="cong-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+         <div class="modal-dialog  modal-a" role="document">
+            <div class="modal-content text-center">
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+               </button>
+               <div class="success-msg-icon">
+                  <i class="fa fa-check-circle m-b-0" aria-hidden="true"></i>
+               </div>
+               <h2>Vendor  successfully  Rejected!!</h2>
+            </div>
+         </div>
+      </div>
+      <div class="modal coman-modal  fade" id="reject-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+         <div class="modal-dialog  modal-a" role="document">
+            <div class="modal-content text-center">
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+               </button>
+               <h2>Reason</h2>
+               <form action="admin/rejectKyc/<%=data.map(x=>x._id)%>?_method=PUT" method="POST">
+               <div class="form-group">
+                  <textarea class="form-control"  name="kycRejectReason" value="" placeholder="Enter the Reason of Rejection"></textarea>
+               </div>
+               <button type="submit" class="btn m-r-sm btn-primary btn-small max-83" >Submit</button>
+               </form>
+            </div>
+         </div>
+      </div>
+     
+      <!-- Mainly scripts -->
+      <script src="js/jquery-2.1.1.js"></script>
+      <script src="js/inspinia.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+      <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+      <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+      <!-- Custom and plugin javascript -->
+      <script src="js/script.js"></script>
+      <script src="js/plugins/pace/pace.min.js"></script>
+      <script src="js/plugins/dataTables/datatables.min.js"></script>
+      <!-- <script>
+         $(document).ready(function(){
+           
+         });
+         
+      </script> -->
+      <!-- zoom kyc document -->
+      <!-- <script type="text/javascript">
+         // Get the modal
+         var modal = document.getElementsByClassName("myModal");
+         
+         // Get the image and insert it inside the modal - use its "alt" text as a caption
+         var img = document.getElementsByClassName("myImg");
+         var modalImg = document.getElementsByClassName("img01");
+         // var captionText = document.getElementById("caption");
+         for(var i = 0; i < img.length; i++) {
+           img[i].onclick = function(){
+             modal[0].style.display = "block";
+             modalImg[0].src = this.src;
+             // captionText.innerHTML = this.alt;
+           }
+         }
+         
+         // Get the <span> element that closes the modal
+         function openModal() {
+           document.getElementsByClassName('myModal').style.display = "block";
+         }
+         
+         function closeModal() {
+           document.getElementsByClassName('myModal')[0].style.display = "none";
+         }
+      </script> -->
+      
+   </body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Collection Valuation</title>
+      <base href="/">
+      <link rel="icon"  type="image/ico" href="img/logo-modal.png">
+      <link href="css/bootstrap.min.css" rel="stylesheet">
+      <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+      <link href="css/animate.css" rel="stylesheet">
+      <link href="css/style.css" rel="stylesheet">
+      <link href="css/mystyle-coman.css" rel="stylesheet">
+      <link href="css/admin-style.css" rel="stylesheet">
+      <link href="css/media.css" rel="stylesheet">
+      <link href="css/datatables.min.css" rel="stylesheet">
+   </head>
+   <body>
+      <div id="wrapper">
+         <nav class="navbar-default navbar-expand-lg  navbar-static-side left-main-menu" role="navigation">
+            <div class="sidebar-collapse">
+               <ul class="nav metismenu" id="side-menu">
+                  <li class="nav-header">
+                     <div class="dropdown profile-element">
+                        <div class="logo-panel text-center float-n">
+                           <a href="admin/dashboard"> <img src="img/logo-modal.png" alt=""></a>
+                        </div>
+                     </div>
+                     <div class="logo-element">
+                        <a href="admin/dashboard"> <img src="img/logo-modal.png" alt=""></a>
+                     </div>
+                  </li>
+                  <li class="active">
+                     <a href="admin/dashboard" title="dashboard"><i class="fa fa-tachometer" aria-hidden="true"></i> <span
+                           class="nav-label">Dashboard</span></a>
+                  </li>
+                  <li class="">
+                     <a href="admin/members" title="Members"><i class="fa fa-users" aria-hidden="true"></i> <span
+                           class="nav-label">Members </span></a>
+                  </li>
+                  <li>
+                     <a href="admin/coins" title="Coins"><i class="fa fa-database" aria-hidden="true"></i> <span
+                           class="nav-label">Coins</span></a>
+                  </li>
+                  <li>
+                     <a href="admin/bankNotes" title="Bank Note"><i class="fa fa-file-text" aria-hidden="true"></i><span
+                           class="nav-label">Bank Note</span></a>
+                  </li>
+                  <li>
+                     <a href="admin/graded-coins" title="Graded coins"><i class="fa fa-usd" aria-hidden="true"></i> <span
+                           class="nav-label">Graded coins </span></a>
+                  </li>
+                  <li>
+                     <a href="admin/graded-notes" title="Graded Notes "><i class="fa fa-file" aria-hidden="true"></i> <span
+                           class="nav-label margin-top">Graded Notes </span></a>
+                  </li>
+                  <li>
+                     <a href="admin/orders" title="Orders"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i><span
+                           class="nav-label margin-top">Orders</span></a>
+                  </li>
+                  <li>
+                     <a href="admin/auctions" title="Auction"><i class="fa fa-gavel" aria-hidden="true"></i> <span
+                           class="nav-label margin-top">Auction</span></a>
+                  </li>
+                  <li  class="">
+                     <a href="admin/kycRequests" title="Kyc"><i class="fa fa-briefcase"></i> <span class="nav-label">KYC Request</span></a>
+                  </li>
+                  <li>
+                     <a href="admin/disputeRequest" title="Dispute Request"><i class="fa fa-question-circle"
+                           aria-hidden="true"></i> <span class="nav-label margin-top">Dispute Request</span></a>
+                  </li>
+   
+                  <li>
+                     <a href="admin/cmsPages" title="CMS Pages"><i class="fa fa-file-text-o" aria-hidden="true"></i><span
+                           class="nav-label margin-top">CMS Pages</span></a>
+                  </li>
+               </ul>
+            </div>
+         </nav>
+      <div id="page-wrapper" class="dark-bg" style="min-height: 615px;">
+         <div class="row top-menu2">
+            <nav class="navbar navbar-static-top dark-bg-header top-menu" role="navigation" style="margin-bottom: 0">
+               <div class="navbar-header">
+                  <a class="navbar-minimalize minimalize-styl-2 btn btn-primary "><i class="fa fa-bars"></i>
+                  </a>
+               </div>
+               <ul class="nav navbar-top-links navbar-right">
+                  <li class="user-info-box welcome tooltipa">
+                      <div class="dropdown d-flex">
+                          <span class="prof-img">
+                              <a href="admin/profile">
+                                <% if(Object.prototype.toString.call(loggedInUser.profilePic) === '[object Object]' && JSON.stringify(loggedInUser.profilePic) === '{}'){%>
+                                 <img alt="image" class="img-back" src="img/prf-img.png"></a>
+                                 <% }else{%>
+                                    <img alt="image" class="img-back" src="<%=loggedInUser.profilePic.url%>"></a>
+                                 <%}%>
+                          </span>
+                          <a data-toggle="dropdown" class="dropdown-toggle" href="#" aria-expanded="false">
+                              <span class="clear"> <span class="block m-t-xs">
+                                  </span> <span class="text-muted text-xs block"><%=loggedInUser.firstName%> <%=loggedInUser.lastName%><b
+                                          class="caret"></b></span> </span> </a>
+                          <ul class="dropdown-menu">
+                              <li><a href="admin/profile">Profile</a></li>
+
+                              <!--                            <li><a href="contacts.html">Contacts</a></li>-->
+                              <li><a href="admin/logout">Logout</a></li>
+                          </ul>
+                      </div>
+                  </li>
+              </ul>
+            </nav>
+         </div>
+         <div class="wrapper wrapper-content">
+            <div class="row" id="dashboard-head">
+               <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                  <div class="ibox">
+                    <a href="admin/members">
+                     <div class="ibox-content text-center">
+                        <h2>Total Members</h2>
+                        <p><%=data.Members%></p>
+                     </div>
+                   </a>
+                  </div>
+               </div>
+               <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                  <div class="ibox">
+                    <a href="admin/orders">
+                     <div class="ibox-content text-center">
+                        <h2>Total Orders</h2>
+                        <p><%=data.Orders%></p>
+                     </div>
+                   </a>
+                  </div>
+               </div>
+               <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                  <div class="ibox">
+                     <div class="ibox-content text-center">
+                        <h2>Total Collections</h2>
+                        <p><%=data.Collections%></p>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                  <div class="ibox">
+                     <div class="ibox-content text-center">
+                        <h2>Total Revenue</h2>
+                        <p><%=data.Revenue%></p>
+                     </div>
+                  </div>
+               </div>
+                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                  <div class="ibox">
+                     <div class="ibox-content text-center">
+                        <h2>Total Grading</h2>
+                        <p><%=data.Graded%></p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div style="margin-bottom: 5px;">
+               <label style="color: #00095e; font-size:medium" for="">Select Year : </label>
+               <select style="background-color:white; border-radius: 4px;">
+               <option value="<%=currentYear%>"><%=currentYear%> </option>
+               <option value="<%=currentYear-1%>"><%=currentYear-1%> </option>
+               <option value="<%=currentYear-2%>"><%=currentYear-2%> </option>
+            </select>
+            </div>
+            <div class="row">
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="col-lg-6">
+                  <div class="ibox">
+                     <div class="ibox-content" id="history">
+                   
+                         <div class="ibox float-e-margins">
+                        <div class="">
+                            <h5>Revenue Line Chart</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <div>
+                                <canvas id="lineChart" height="140"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+                     </div>
+                     </div>
+                      <div class="col-lg-6">
+                  <div class="ibox">
+                     <div class="ibox-content" id="history">
+                   
+                         <div class="ibox float-e-margins">
+                        <div class="">
+                            <h5>Revenue Bar Chart</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <div>
+                                <canvas id="barChart" height="140"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+            
+                     </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Mainly scripts -->
+      <script src="js/jquery-2.1.1.js"></script>
+      <script src="js/inspinia.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+      <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+      <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+      <!-- Custom and plugin javascript -->
+      <script src="js/script.js"></script>
+      <script src="js/plugins/pace/pace.min.js"></script>
+      <script src="js/plugins/dataTables/datatables.min.js"></script>
+       <!-- ChartJS-->
+       <script src="js/chart.js"></script>
+       <script src="js/plugins/chartData/Chart.min.js"></script>
+   </body>
+</html>

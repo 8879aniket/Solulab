@@ -1,0 +1,115 @@
+{
+  "name": "one-coin-backend",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "pm2:start": "npm run remove && pm2 start npm --name=\"One Coin BE\" -- start",
+    "pm2:restart": "pm2 restart \"One Coin BE\"",
+    "pm2:delete": "pm2 delete \"One Coin BE\"",
+    "start": "npm run build && node src/api/bin/www --exec babel-node --presets @babel/preset-env",
+    "build": "npm run remove && babel ./src --out-dir lib --copy-files",
+    "build-prod": "npm run build && babel ./lib -d dist --copy-files",
+    "prod": "npm run build-prod && node --max-old-space-size=4096 dist/api/bin/www",
+    "dev": "nodemon ./src/api/bin/www --exec babel-node --presets @babel/preset-env",
+    "remove": "rm -rf dist lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SoluLab/one-coin-backend.git"
+  },
+  "engines": {
+    "node": "14.17.5"
+  },
+  "author": "Abhishek Trivedi, Aniket Kesharwani, Ketan Agrawal",
+  "license": "ISC",
+  "homepage": "https://github.com/SoluLab/one-coin-backend#readme",
+  "dependencies": {
+    "@ethereumjs/common": "^2.4.0",
+    "@ethereumjs/tx": "^3.3.0",
+    "@sendgrid/client": "^7.7.0",
+    "@sendgrid/mail": "^7.6.2",
+    "@truffle/hdwallet-provider": "^2.0.4",
+    "app-root-path": "^3.0.0",
+    "aws-sdk": "^2.1106.0",
+    "axios": "^0.27.2",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.2",
+    "bull": "^4.8.2",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "express": "^4.17.2",
+    "express-mongo-sanitize": "^2.1.0",
+    "helmet": "^4.6.0",
+    "html-to-text": "^8.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "module-alias": "^2.2.2",
+    "moment": "^2.29.1",
+    "mongoose": "^6.1.4",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.4",
+    "multer-s3": "^2.10.0",
+    "pm2": "^5.2.0",
+    "socket.io": "^4.4.1",
+    "socket.io-client": "^4.4.1",
+    "twilio": "^3.75.1",
+    "validator": "^13.7.0",
+    "web3": "^1.7.3",
+    "web3-providers-ws": "^1.7.3",
+    "winston": "^3.3.3",
+    "xss-clean": "^0.1.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.1",
+    "@babel/core": "^7.10.2",
+    "@babel/eslint-parser": "^7.14.4",
+    "@babel/node": "^7.10.1",
+    "@babel/plugin-proposal-optional-chaining": "^7.14.2",
+    "@babel/plugin-transform-regenerator": "^7.14.5",
+    "@babel/preset-env": "^7.10.2",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.11.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-security": "^1.4.0",
+    "hardhat": "^2.6.4",
+    "husky": "^4.3.8",
+    "lint-staged": "^10.2.11",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.0.5",
+    "pretty-quick": "^2.0.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "eslint --fix src/",
+      "pretty-quick — staged"
+    ]
+  },
+  "_moduleAliases": {
+    "@bin": "src/api/bin",
+    "@models": "build/models",
+    "@config": "build/core/config",
+    "@core": "build/core",
+    "@mail": "build/mails",
+    "@middlewares": "build/middlewares",
+    "@helpers": "build/helpers",
+    "@jobs": "build/jobs",
+    "@datasources": "build/data-sources",
+    "@schemas": "build/schemas",
+    "@abis": "abis"
+  }
+}

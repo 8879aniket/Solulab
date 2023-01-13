@@ -1,0 +1,132 @@
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="modal coman-modal  fade" id="Status-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+   <div class="modal-dialog modal-sm modal-a" role="document">
+      <div class="modal-content text-center">
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+         </button>
+         <h2>Status</h2>
+         <div class="form-group text-left">
+            <label> <span>Document 1 :</span> Approve</label>
+         </div>
+         <div class="form-group text-left">
+            <label><span>Document 2 : </span> Reject Image is Blur</label>
+         </div>
+         <div class="form-group  text-left">
+            <label><span>Document 3 : </span> Approve</label>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- IMAGE MODAL -->
+<div id="myModal" class="modal kyc myModal">
+   <span class="close cursor" onclick="closeModal()">&times;</span>
+   <img class="modal-content-A img01">
+   <!-- <div id="caption"></div> -->
+</div>
+<div class="modal coman-modal  fade" id="cong-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+   <div class="modal-dialog  modal-a" role="document">
+      <div class="modal-content text-center">
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+         </button>
+         <div class="success-msg-icon">
+            <i class="fa fa-check-circle m-b-0" aria-hidden="true"></i>
+         </div>
+         <h2>Vendor successfully Rejected!!</h2>
+      </div>
+   </div>
+</div>
+<div class="modal coman-modal  fade" id="reject-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+   <div class="modal-dialog  modal-a" role="document">
+      <div class="modal-content text-center">
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+         </button>
+         <h2>Reason</h2>
+         <div class="form-group">
+            <textarea class="form-control" placeholder="Enter the Reason of Rejection"></textarea>
+         </div>
+         <a href="#cong-modal" class="btn m-r-sm btn-primary btn-small max-83" data-dismiss="modal"
+            data-toggle="modal">Submit</a>
+      </div>
+   </div>
+</div>
+<!-- Mainly scripts -->
+<script src="{{ACCESSURL}}js/jquery-2.1.1.js"></script>
+<script src="{{ACCESSURL}}js/bootstrap.min.js"></script>
+<script src="{{ACCESSURL}}js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="{{ACCESSURL}}js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<!-- Custom and plugin javascript -->
+<script src="{{ACCESSURL}}js/inspinia.js"></script>
+<script src="{{ACCESSURL}}js/plugins/pace/pace.min.js"></script>
+<script src="{{ACCESSURL}}js/plugins/dataTables/datatables.min.js"></script>
+<script>
+   $(document).ready(function () {
+      $('.dataTables-example').DataTable();
+      /* Init DataTables */
+   }
+   );
+
+</script>
+<!-- zoom kyc document -->
+<script type="text/javascript">
+   // Get the modal
+   var modal = document.getElementsByClassName("myModal");
+
+   // Get the image and insert it inside the modal - use its "alt" text as a caption
+   var img = document.getElementsByClassName("myImg");
+   var modalImg = document.getElementsByClassName("img01");
+   // var captionText = document.getElementById("caption");
+   for (var i = 0; i < img.length; i++) {
+      img[i].onclick = function () {
+         modal[0].style.display = "block";
+         modalImg[0].src = this.src;
+         // captionText.innerHTML = this.alt;
+      }
+   }
+
+   // Get the <span> element that closes the modal
+   function openModal() {
+      document.getElementsByClassName('myModal').style.display = "block";
+   }
+
+   function closeModal() {
+      document.getElementsByClassName('myModal')[0].style.display = "none";
+   }
+</script>
+<div class="modal coman-modal fade" id="modal-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content text-center">
+         <h3>Are you sure you want to Delete Autions?</h3>
+         <div class="clearfix">
+            <button type="submit" class="btn   btn-default m-r-sm" data-dismiss="modal">No</button>
+            <button type="submit" data-toggle="modal" class="btn btn-primary" data-dismiss="modal"
+               data-target="#modal-successa">Yes</button>
+         </div>
+
+      </div>
+   </div>
+
+</div>
+<div class="modal coman-modal  fade" id="modal-successa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content text-center">
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+         </button>
+         <div class="success-msg-icon">
+            <i class="fa fa-check-circle m-b-0" aria-hidden="true"></i>
+         </div>
+         <h2>Deleted successfully !!</h2>
+      </div>
+   </div>
+</div>
+</body>
+
+</html>

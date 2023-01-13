@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Collection Valuation</title>
+  <base href="/">
+  <link rel="icon" type="image/ico" href="{{ACCESSURL}}img/logo-modal.png">
+  <link href="{{ACCESSURL}}css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{ACCESSURL}}font-awesome/css/font-awesome.css" rel="stylesheet">
+  <link href="{{ACCESSURL}}css/animate.css" rel="stylesheet">
+  <link href="{{ACCESSURL}}css/style.css" rel="stylesheet">
+  <link href="{{ACCESSURL}}css/mystyle-coman.css" rel="stylesheet">
+  <link href="{{ACCESSURL}}css/media.css" rel="stylesheet">
+  <link href="{{ACCESSURL}}css/admin-style.css" rel="stylesheet">
+</head>
+
+<body>
+  <div id="wrapper">
+    <!-- log in html -->
+    <div class=" coman-modal coman-modal-a" id="sign-in">
+      <div class="modal-dialog  modal-dialog-centered" role="document">
+        <div class="modal-content  text-center">
+          <img src="{{ACCESSURL}}img/logo-modal.png" alt="">
+          <h1>Sign In</h1>
+          <div class="form-group">
+            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+            <input type="email" class="form-control" placeholder="Email">
+          </div>
+          <div class="form-group pass-word">
+            <i class="fa fa-lock" aria-hidden="true"></i>
+            <input type="password" class="form-control" placeholder="Password">
+          </div>
+
+          <button type="submit" class="btn btn-primary" onclick="location.href='dashboard.html'">SIGN IN</button>
+          <!-- <button data-toggle="modal" data-target="#sign-up" type="submit" class="btn btn-default m-t-sm" onclick="location.href='sign-up.html'">CREATE ACCOUNT </button> -->
+          <div class="forgot-link m-t-md text-center">
+            <a href="#" data-toggle="modal" data-target="#forgot-pw-modal" data-dismiss="modal">Forgot Password?</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- log in html -->
+  </div>
+
+  <!-- forgot password -->
+
+  <div class="modal coman-modal  fade" id="success-msg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-a" role="document">
+      <div class="modal-content text-center">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+        <h1>Successful</h1>
+        <div class="success-msg-icon">
+          <i class="fa fa-check-circle" aria-hidden="true"></i>
+
+        </div>
+        <p>We have sent you a passoword reset link on your registered mail address.</p>
+
+      </div>
+    </div>
+  </div>
+  <div class="modal coman-modal  fade" id="forgot-pw-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog  modal-a" role="document">
+      <div class="modal-content text-center">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <!--  <a href="dashboard.html"> <img src="img/logo-modal.png" alt=""></a> -->
+        <h2>Forgot Password</h2>
+        <p>Don't remember your password? No worries.
+          It happens with everyone. Just enter your registered email address and we will send you an link to reset
+          password </p>
+        <div class="form-group">
+          <i class="fa fa-lock" aria-hidden="true"></i>
+          <input type="email" class="form-control" placeholder="Email">
+        </div>
+        <button type="submit" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal"
+          data-target="#success-msg">submit</button>
+      </div>
+    </div>
+  </div>
+  <!-- Mainly scripts -->
+  <script src="{{ACCESSURL}}js/jquery-2.1.1.js"></script>
+  <script src="{{ACCESSURL}}js/bootstrap.min.js"></script>
+  <script src="{{ACCESSURL}}js/plugins/metisMenu/jquery.metisMenu.js"></script>
+  <script src="{{ACCESSURL}}js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+  <!-- Custom and plugin javascript -->
+  <script src="{{ACCESSURL}}js/inspinia.js"></script>
+  <script src="{{ACCESSURL}}js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

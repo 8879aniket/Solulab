@@ -1,0 +1,12 @@
+node_modules
+logs
+.husky
+tsconfig.json
+README.md
+# package.json
+package-lock.json
+service/sqs.ts
+.env
+.env.sample
+.eslintrc
+.eslintignore

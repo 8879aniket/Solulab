@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collection Valuation</title>
+    <base href="/">
+    <link rel="icon" type="image/ico" href="img/logo-modal.png">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/mystyle-coman.css" rel="stylesheet">
+    <link href="css/media.css" rel="stylesheet">
+    <link href="css/admin-style.css" rel="stylesheet">
+    <link href="css/datatables.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar-default navbar-expand-lg  navbar-static-side left-main-menu" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element">
+                            <div class="logo-panel text-center float-n">
+                                <a href="dashboard.html"> <img src="img/logo-modal.png" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="logo-element">
+                            <a href="admin/dashboard"> <img src="img/logo-modal.png" alt=""></a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="admin/dashboard" title="dashboard"><i class="fa fa-tachometer" aria-hidden="true"></i>
+                            <span class="nav-label">Dashboard</span></a>
+                    </li>
+                    <li>
+                        <a href="admin/members" title="Members"><i class="fa fa-users" aria-hidden="true"></i> <span
+                                class="nav-label">Members </span></a>
+                    </li>
+                    <li>
+                        <a href="admin/coins" title="Coins"><i class="fa fa-database" aria-hidden="true"></i> <span
+                                class="nav-label">Coins</span></a>
+                    </li>
+                    <li>
+                        <a href="admin/bankNotes" title="Bank Note"><i class="fa fa-file-text"
+                                aria-hidden="true"></i><span class="nav-label">Bank Note</span></a>
+                    </li>
+                    <li>
+                        <a href="admin/graded-coins" title="Graded coins"><i class="fa fa-usd" aria-hidden="true"></i>
+                            <span class="nav-label">Graded coins </span></a>
+                    </li>
+                    <li>
+                        <a href="admin/graded-notes" title="Graded Notes "><i class="fa fa-file" aria-hidden="true"></i>
+                            <span class="nav-label margin-top">Graded Notes </span></a>
+                    </li>
+                    <li>
+                        <a href="admin/orders" title="Orders"><i class="fa fa-cart-arrow-down"
+                                aria-hidden="true"></i><span class="nav-label margin-top">Orders</span></a>
+                    </li>
+                    <li class="active">
+                        <a href="admin/auctions" title="Auction"><i class="fa fa-gavel" aria-hidden="true"></i>
+                            <span class="nav-label margin-top">Auction</span></a>
+                    </li>
+                    <li  class="">
+                        <a href="admin/kycRequests" title="Kyc"><i class="fa fa-briefcase"></i> <span class="nav-label">KYC Request</span></a>
+                     </li>
+                    <li>
+                        <a href="admin/disputeRequest" title="Dispute Request"><i class="fa fa-question-circle"
+                                aria-hidden="true"></i> <span class="nav-label margin-top">Dispute Request</span></a>
+                    </li>
+
+                    <li>
+                        <a href="admin/cmsPages" title="CMS Pages"><i class="fa fa-file-text-o" aria-hidden="true"></i><span
+                            class="nav-label margin-top">CMS Pages</span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div id="page-wrapper" class="dark-bg">
+            <div class="row top-menu2">
+                <nav class="navbar navbar-static-top dark-bg-header top-menu" role="navigation"
+                    style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary "><i class="fa fa-bars"></i>
+                        </a>
+                     </div>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li class="user-info-box welcome tooltipa">
+                            <div class="dropdown d-flex">
+                                <span class="prof-img">
+                                    <a href="admin/profile">
+                                      <% if(Object.prototype.toString.call(loggedInUser.profilePic) === '[object Object]' && JSON.stringify(loggedInUser.profilePic) === '{}'){%>
+                                       <img alt="image" class="img-back" src="img/prf-img.png"></a>
+                                       <% }else{%>
+                                          <img alt="image" class="img-back" src="<%=loggedInUser.profilePic.url%>"></a>
+                                       <%}%>
+                                </span>
+                                <a data-toggle="dropdown" class="dropdown-toggle" href="#" aria-expanded="false">
+                                    <span class="clear"> <span class="block m-t-xs">
+                                        </span> <span class="text-muted text-xs block"><%=loggedInUser.firstName%> <%=loggedInUser.lastName%><b
+                                                class="caret"></b></span> </span> </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="admin/profile">Profile</a></li>
+      
+                                    <!--                            <li><a href="contacts.html">Contacts</a></li>-->
+                                    <li><a href="admin/logout">Logout</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="wrapper wrapper-content">
+               
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        
+                        <div class="ibox">
+                            <div class="ibox-content" id="history">
+                                <div class="box-heading">
+                                    <a href="admin/auctions">
+                                        <h2> <img src="img/back-icon.png" class="img-back">Auction Coin/ Notes
+                                        </h2>
+                                    </a>
+                                </div>
+                                <div class="border-solid m-b-lg">
+                                    <% if(data.map(x=>x.coinDetails).some(e=>e === undefined)){ %>
+                                        <h4>Coin details not found</h4>
+                                        <% }else{ %>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="row ">
+                                               
+                                                <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+
+
+                                                        <img src="<%=data.map(x=>x.coinDetails.pictures.front.url)[0]%>" class="profile-img-b profile-img-a">
+                                                        <h4 class="text-center">Front View</h4>
+                                                   
+                                                </div>
+                                                <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                                                    
+                                                    <img src="<%= data.map(x=>x.coinDetails.pictures.back.url)[0]%>" class="profile-img-b profile-img-a">
+                                                    <h4 class="text-center">Back View</h4>
+                                                   
+                                                </div>
+                                                <div class="col-lg-7 col-md-6 col-sm-6 col-xs-12 float-right">
+                                                    <h2>Auction Information:</h2>
+                                                    <div class="box-walleta table-responsive">
+                                                        <table id="customers">
+                                                            <thead>
+                                                                
+                                                                <tr>
+                                                                        <td>Auction ID:</td>
+                                                                        <td>
+                                                                            <%= data.map(x=>x._id)%>
+                                                                        </td>       
+                                                                    </tr>
+                                                                <tr>
+                                                                        <td>Name of coin:</td>
+                                                                        <td>
+                                                                            <%= data.map(x=>x.coinDetails.name)[0]%>
+                                                                        </td>       
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Price W/O Grad:</td>
+                                                                        <td>350</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Price W Grad:</td>
+                                                                        <td>450</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Year:</td>
+                                                                        <td>
+                                                                            <%= data.map(x=>x.coinDetails.year)[0]%>
+                                                                        </td>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <td>Ruler:</td>
+                                                                        <td>
+                                                                            <%= data.map(x=>x.coinDetails.ruler)[0]%>
+                                                                        </td>
+                                                                    </tr>
+                                                                   
+                                                                </thead>
+                                                            </table>
+                                                        </div>
+                                                        
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <% } %>
+                                    </div>
+                                    <div class="tabs-container" id="tab-new">
+                                        <ul class="nav nav-tabs">
+                                            <li class="active"><a data-toggle="tab" href="#tab-1"> Bidder's
+                                                    information</a></li>
+
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div id="tab-1" class="tab-pane active">
+                                                <div class="panel-body">
+                                                    <div class="table-responsive coman-table" id="my-tablea">
+                                                        <table class="table dataTables-bidderDetails">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Id</th>
+                                                                    <th>Bidder Name</th>
+                                                                    <th>Price</th>
+
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <%if(data.map(x=>x.bidderDetails).some(e=>e === undefined)){%>
+                                                                    <%}else{%>
+                                                                <%data.forEach(function(bidder){%>
+                                                                <tr>
+                                                                       
+                                                                        <td>
+                                                                            <%= bidder.bidderDetails._id%>
+                                                                        </td>
+                                                                        <td>
+                                                                            <%= bidder.userDets.firstName%>
+                                                                        </td>
+                                                                        <td>
+                                                                            <%= bidder.bidderDetails.amount%>
+                                                                        </td>
+                                                                    
+                                                                       
+                                                                        
+                                                                    </tr>
+                                                                    <%})%>
+                                                                    <%}%>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                            </div>
+                        </div>
+                    </div>
+                    <!--// kyc documents -->
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+    <!-- IMAGE MODAL -->
+    <div id="myModal" class="modal kyc myModal">
+        <span class="close cursor" onclick="closeModal()">&times;</span>
+        <img class="modal-content-A img01">
+        <!-- <div id="caption"></div> -->
+    </div>
+
+
+    <div class="modal coman-modal  fade" id="modal-successs" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content text-center">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="success-msg-icon">
+                    <i class="fa fa-check-circle m-b-0" aria-hidden="true"></i>
+                </div>
+                <h2>Deleted successfully !!</h2>
+            </div>
+        </div>
+    </div>
+    <!-- Mainly scripts -->
+    <script src="js/jquery-2.1.1.js"></script>
+    <script src="js/inspinia.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- Custom and plugin javascript -->
+    <script src="js/script.js"></script>
+    <script src="js/plugins/pace/pace.min.js"></script>
+    <script src="js/plugins/dataTables/datatables.min.js"></script>
+</body>
+
+</html>

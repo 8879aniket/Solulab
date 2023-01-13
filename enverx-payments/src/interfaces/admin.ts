@@ -1,0 +1,41 @@
+export interface AdminInterface {
+	id: string
+	name: string
+	email: string
+	mobileNumber?: number
+	countryCode?: string
+	password?: string
+	twoFAStatus?: boolean
+	twoFAType?: string
+	otpCode?: number
+	accountType: 'ADMIN' | 'SUPER_ADMIN' | 'PROJECT_DEVELOPER'
+	firstTimeLogin?: boolean
+	role?: string
+	isActive?: boolean
+	profilePic?: string
+	walletId?: string
+	walletType?: string
+	walletDescription?: string
+	venlyPinCode?: string
+	blockchainWalletId?: string
+	blockchainWalletAddress?: string
+	blockchainWalletDescription?: string
+	blockchainSecretType?: string
+	blockchainWalletType?: string
+	blockchainWalletIdentifier?: string
+	otpLimit?: number
+	otpBlockTime?: Date
+	otpExpire?: Date
+	isOTPBlocked?: boolean
+	passwordResetToken?: string
+	passwordResetExpired?: Date
+	loginAttempt?: number
+	loginBlockedTime?: Date
+	isLoginBlocked?: boolean
+	incorrectOtpAttempt?: number
+	forgotPasswordLimit?: number
+	forgotPasswordBlockTime?: Date
+	linkSentBlocked?: boolean
+	passwordChangedAt?: Date
+	passwordChangeByUserTokenCreatedAt?: Date
+}
